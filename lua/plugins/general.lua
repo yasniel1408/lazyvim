@@ -11,6 +11,18 @@ if true then return {} end
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
+  {
+    "f-person/git-blame.nvim",
+    opts = {
+      virt_text = true,
+      virt_text_pos = "eol",
+      delay = 100,
+      enabled = true,
+      lang = "en",
+      message_template = "<summary> • <date> • <author>",
+      message_when_not_committed = "Oh please, commit this!",
+    },
+  },
 
   -- Configure LazyVim to load gruvbox
   {
@@ -41,39 +53,11 @@ return {
   -- override nvim-cmp and add cmp-emoji
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { {"hrsh7th/cmp-emoji"}, { "roobert/tailwindcss-colorizer-cmp.nvim", config = true }, },
+    dependencies = { { "hrsh7th/cmp-emoji" }, { "roobert/tailwindcss-colorizer-cmp.nvim", config = true } },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
     end,
-    opts = function(_, opts)
-      -- original LazyVim kind icon formatter
-      local format_kinds = opts.formatting.format
-      opts.formatting.format = function(entry, item)
-        format_kinds(entry, item) -- add icons
-        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
-      end
-    end,
   },
-
-  -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
-
-  -- add jsonls and schemastore ans setup treesitter for json, json5 and jsonc
-  { import = "lazyvim.plugins.extras.lang.json" },
-
-  -- add any tools you want to have installed below
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
-      },
-    },
-  },
-
 }
