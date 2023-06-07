@@ -11,18 +11,6 @@ if true then return {} end
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
-  {
-    "f-person/git-blame.nvim",
-    opts = {
-      virt_text = true,
-      virt_text_pos = "eol",
-      delay = 100,
-      enabled = true,
-      lang = "en",
-      message_template = "<summary> • <date> • <author>",
-      message_when_not_committed = "Oh please, commit this!",
-    },
-  },
 
   -- Configure LazyVim to load gruvbox
   {

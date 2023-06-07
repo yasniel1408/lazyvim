@@ -1,8 +1,3 @@
-vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
-local git_blame = require("gitblame")
-git_blame.is_blame_text_available() -- Returns a boolean value indicating whether blame message is available
-git_blame.get_current_blame_text() --  Returns a string with blame message
-
 return {
   -- the opts function can also be used to change the default opts:
   {
@@ -33,7 +28,6 @@ return {
             },
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
             { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
-            { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
           -- stylua: ignore
           {
             function() return require("nvim-navic").get_location() end,
@@ -78,6 +72,11 @@ return {
               return " " .. os.date("%R")
             end,
           },
+          --lualine_z = {
+          --  " %w %<",
+          --  { "fileformat", symbols = { unix = " ", dos = " ", mac = " " } },
+          --  { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          --},
         },
         extensions = { "neo-tree", "lazy" },
       }
