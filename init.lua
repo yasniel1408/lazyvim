@@ -2,3 +2,7 @@
 require("config.lazy")
 require("symbols-outline").setup()
 require("toggleterm").setup()
+require("nvim-blamer").setup({
+  enable = true,
+  format = "%committer │ %committer-time-human │ %summary",
+})

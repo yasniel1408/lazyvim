@@ -115,7 +115,7 @@ return {
       fps = 100, -- frames per second
       cps = 120, -- cells per second
       on_begin = function()
-        vim.g.minianimate_disable = true
+        vim.g.minianimate_disable = false
       end,
       on_end = function()
         vim.g.minianimate_disable = false
@@ -125,7 +125,7 @@ return {
       -- spinner = require("noice.util.spinners").spinners.circleFull,
       spinner = {
         frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-        interval = 80,
+        interval = 30,
       },
     },
     -- enable this to exit Neovim when only edgy windows are left
@@ -149,7 +149,7 @@ return {
     },
     opts = {
       bottom = {
-        { ft = "toggleterm", size = { height = 0.4 } },
+        { ft = "toggleterm", size = { height = 0.2 } },
         {
           ft = "lazyterm",
           title = "LazyTerm",
@@ -177,7 +177,7 @@ return {
           filter = function(buf)
             return vim.b[buf].neo_tree_source == "filesystem"
           end,
-          size = { height = 0.5 },
+          size = { height = 0.6, width = 0.2 },
         },
         {
           title = "Neo-Tree Git",
@@ -187,6 +187,7 @@ return {
           end,
           pinned = true,
           open = "Neotree position=right git_status",
+          size = { height = 0.2 },
         },
         {
           title = "Neo-Tree Buffers",
@@ -194,13 +195,14 @@ return {
           filter = function(buf)
             return vim.b[buf].neo_tree_source == "buffers"
           end,
-          pinned = true,
+          pinned = false,
           open = "Neotree position=top buffers",
         },
         {
           ft = "Outline",
           pinned = true,
           open = "SymbolsOutline",
+          size = { height = 0.3 },
         },
         "neo-tree",
       },
