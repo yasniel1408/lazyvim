@@ -32,6 +32,8 @@ return {
         "go",
         "scss",
         "sql",
+        "dockerfile",
+        "css",
       },
     },
   },

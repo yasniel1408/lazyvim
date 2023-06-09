@@ -2,21 +2,38 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-neotest/neotest-plenary" },
   { "nvim-neotest/neotest-jest" },
+  { "nvim-neotest/neotest-python" },
+  { "nvim-neotest/neotest-go" },
+  { "markemmons/neotest-deno" },
+  { "nvim-neotest/neotest-vim-test" },
+  { "neotest-vim-test" },
+  { "vim-test/vim-test" },
   { "antoinemadec/FixCursorHold.nvim" },
   {
     "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "neotest-vim-test",
+    },
     opts = {
-      -- Can be a list of adapters like what neotest expects,
-      -- or a list of adapter names,
-      -- or a table of adapter names, mapped to adapter configs.
-      -- The adapter will then be automatically loaded with the config.
-      -- adapters = { "neotest-plenary", "neotest-jest" },
-      -- Example for loading neotest-go with a custom config
       adapters = {
         ["neotest-jest"] = {
           args = { "--coverage" },
         },
         ["neotest-plenary"] = {},
+        ["neotest-python"] = {},
+        ["neotest-deno"] = {},
+        ["neotest-go"] = {
+          experimental = {
+            test_table = true,
+          },
+          args = { "-count=1", "-timeout=60s" },
+        },
+        ["neotest-vim-test"] = {
+          ignore_filetypes = { "jest", "python", "go" },
+        },
       },
       status = { virtual_text = true },
       output = { open_on_run = true },
